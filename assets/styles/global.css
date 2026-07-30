@@ -1,9 +1,68 @@
-.link {
-    text-decoration: wavy;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 20px;
 }
 
-h1 {
+header {
+    text-align: center;
+    background-color:  rgb(55, 88, 149);
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+
+h2 {
+    color: rgb(55, 88, 149);
+    border-bottom: 2px solid rgb(55, 88, 149);
+    padding-bottom: 5px;
+}
+
+
+img {
+    display: block;
+    margin: 20px auto;
+    border-radius: 30%;
+    border: 3px solid  rgb(55, 88, 149);
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Secciones */
+section {
+    background-color: white;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+/* Listas */
+ul {
+    padding-left: 20px;
+}
+
+/* Línea divisoria */
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+/* Enlaces */
+a {
     color: cornflowerblue;
 }
 
-
+a:hover {
+    color: darkblue;
+}
