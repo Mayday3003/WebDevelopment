@@ -1,0 +1,554 @@
+/* =====================================================
+   HOJA DE VIDA - MARIANA LOPERA
+   Archivo: cv.css
+===================================================== */
+
+
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#eef3f8;
+
+    color:#2b4057;
+
+    line-height:1.7;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+    background:linear-gradient(135deg,#2b4057,#4b7098);
+
+    color:white;
+
+    text-align:center;
+
+    padding:40px 20px;
+
+}
+
+.header-contenido h1{
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+}
+
+.subtitulo{
+
+    font-size:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* =====================================================
+   MENÚ
+===================================================== */
+
+nav{
+
+    margin-top:10px;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    margin:0 18px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:#d9e5f2;
+
+}
+
+
+/* =====================================================
+   CONTENEDOR PRINCIPAL
+===================================================== */
+
+.contenedor{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:40px auto;
+
+    display:grid;
+
+    grid-template-columns:300px 1fr;
+
+    gap:30px;
+
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar{
+
+    background:#2b4057;
+
+    color:white;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+
+/* FOTO */
+
+.sidebar img{
+
+    width:180px;
+
+    height:180px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:5px solid white;
+
+    margin-bottom:20px;
+
+}
+
+.sidebar h2{
+
+    color:white;
+
+    border:none;
+
+    margin-bottom:5px;
+
+}
+
+.profesion{
+
+    color:#d7e4f3;
+
+    margin-bottom:30px;
+
+}
+
+
+/* BLOQUES */
+
+.bloque{
+
+    text-align:left;
+
+    margin-top:35px;
+
+}
+
+.bloque h3{
+
+    color:white;
+
+    margin-bottom:15px;
+
+    border-bottom:2px solid rgba(255,255,255,.2);
+
+    padding-bottom:8px;
+
+}
+
+.bloque p{
+
+    margin-bottom:12px;
+
+}
+
+.bloque a{
+
+    color:white;
+
+    text-decoration:none;
+
+}
+
+.bloque a:hover{
+
+    color:#d9e5f2;
+
+}
+
+
+/* =====================================================
+   HABILIDADES
+===================================================== */
+
+.habilidades{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+}
+
+.habilidades span{
+
+    background:white;
+
+    color:#2b4057;
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================================
+   LISTAS SIDEBAR
+===================================================== */
+
+.sidebar ul{
+
+    margin-left:20px;
+
+}
+
+.sidebar li{
+
+    margin-bottom:8px;
+
+}
+
+
+/* =====================================================
+   CONTENIDO DERECHO
+===================================================== */
+
+.contenido{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+
+/* =====================================================
+   TARJETAS
+===================================================== */
+
+.card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+}
+
+
+/* =====================================================
+   TITULOS
+===================================================== */
+
+.card h2{
+
+    color:#2b4057;
+
+    margin-bottom:20px;
+
+    border-bottom:3px solid #4b7098;
+
+    padding-bottom:10px;
+
+}
+
+.card h3{
+
+    color:#4b7098;
+
+    margin-top:15px;
+
+    margin-bottom:10px;
+
+}
+
+
+/* =====================================================
+   PÁRRAFOS
+===================================================== */
+
+.card p{
+
+    margin-bottom:15px;
+
+}
+
+
+/* =====================================================
+   LISTAS
+===================================================== */
+
+.card ul{
+
+    margin-left:25px;
+
+}
+
+.card li{
+
+    margin-bottom:10px;
+
+}
+
+
+/* =====================================================
+   EDUCACIÓN
+===================================================== */
+
+.item{
+
+    margin-bottom:25px;
+
+    padding-bottom:15px;
+
+    border-bottom:1px solid #dce7f1;
+
+}
+
+.item:last-child{
+
+    border:none;
+
+}
+
+
+/* =====================================================
+   FORMULARIO
+===================================================== */
+
+form{
+
+    margin-top:15px;
+
+}
+
+label{
+
+    display:block;
+
+    margin-top:18px;
+
+    margin-bottom:8px;
+
+    font-weight:bold;
+
+}
+
+input,
+textarea{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #b8cadb;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    outline:none;
+
+}
+
+input:focus,
+textarea:focus{
+
+    border-color:#4b7098;
+
+}
+
+
+/* =====================================================
+   BOTÓN
+===================================================== */
+
+button{
+
+    margin-top:20px;
+
+    background:#2b4057;
+
+    color:white;
+
+    border:none;
+
+    padding:14px 25px;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#4b7098;
+
+}
+
+
+/* =====================================================
+   ENLACES
+===================================================== */
+
+.contenido a{
+
+    color:#4b7098;
+
+}
+
+.contenido a:hover{
+
+    color:#2b4057;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    background:#2b4057;
+
+    color:white;
+
+    text-align:center;
+
+    padding:25px;
+
+    margin-top:40px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:900px){
+
+    .contenedor{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .sidebar{
+
+        order:2;
+
+    }
+
+    .contenido{
+
+        order:1;
+
+    }
+
+    nav a{
+
+        display:inline-block;
+
+        margin:8px;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .header-contenido h1{
+
+        font-size:30px;
+
+    }
+
+    .subtitulo{
+
+        font-size:18px;
+
+    }
+
+    .sidebar img{
+
+        width:150px;
+
+        height:150px;
+
+    }
+
+    .card{
+
+        padding:20px;
+
+    }
+
+}

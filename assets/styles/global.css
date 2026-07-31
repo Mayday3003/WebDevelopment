@@ -2,8 +2,9 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
-    margin: 20px;
+    margin: 10px;
 }
+
 
 header {
     text-align: center;
@@ -28,18 +29,22 @@ img {
     border: 3px solid  rgb(55, 88, 149);
 }
 
-nav a {
+nav a.activo {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    margin: 0 10px;
+    padding: 8px 10px;
+    border-radius: 5%;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    background-color: aqua;
 }
 
-/* Secciones */
+img:hover {
+        transform: scaleX(-1);
+}
+
 section {
     background-color: white;
     padding: 15px;
@@ -47,22 +52,14 @@ section {
     border-radius: 10px;
 }
 
-/* Listas */
 ul {
     padding-left: 20px;
 }
 
-/* Línea divisoria */
+/* Línea de division */
 hr {
     border: none;
     border-top: 1px solid #ccc;
 }
 
-/* Enlaces */
-a {
-    color: cornflowerblue;
-}
 
-a:hover {
-    color: darkblue;
-}
