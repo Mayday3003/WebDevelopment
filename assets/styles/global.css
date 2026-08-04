@@ -7,11 +7,14 @@ body {
 
 
 header {
-    text-align: center;
     background-color:  rgb(55, 88, 149);
     color: white;
-    padding: 10px;
+    padding: 18px;
     border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
 }
 
 
@@ -37,8 +40,25 @@ nav a.activo {
     border-radius: 5%;
 }
 
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.12);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
 nav a:hover {
-    background-color: aqua;
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
 }
 
 img:hover {
