@@ -1,0 +1,19 @@
+{
+  "name": "basic",
+  "version": "1.0.0",
+  "description": "basic",
+  "keywords": [
+    "basic"
+  ],
+  "license": "MIT",
+  "author": "yo",
+  "type": "commonjs",
+  "main": "index.ts",
+  "scripts": {
+    "build" : "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
