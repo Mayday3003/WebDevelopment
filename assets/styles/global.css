@@ -306,9 +306,11 @@ main{
 .interest-grid{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--linea-fuerte);
+  gap: 18px;
+  background: transparent;
   border: 1px solid var(--linea-fuerte);
+  outline: 1px solid var(--linea-fuerte);
+  outline-offset: 15px;
 }
 .interest-card{
   background: var(--negro);
