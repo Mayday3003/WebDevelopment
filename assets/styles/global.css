@@ -150,19 +150,19 @@ h1, h2, h3{
 /* Botón Toggle Sol / Luna ubicado afuera de la raya (más abajo, bajo el logo) */
 .theme-toggle-btn{
   position: absolute;
-  top: calc(100% + 12px);
+  top: calc(100% + 20px);
   left: 0;
   background: var(--azul-medio);
   border: 1px solid var(--linea-fuerte);
   color: var(--beige);
-  padding: 4px 12px;
+  padding: 5px 13px;
   border-radius: 20px;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   cursor: pointer;
   font-family: var(--font-ui);
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
