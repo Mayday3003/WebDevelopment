@@ -3,14 +3,17 @@ const STORAGE_KEY = "mayday-experiencias-v1";
 const personForm = document.querySelector("#person-form");
 const personIdInput = document.querySelector("#person-id");
 const personNameInput = document.querySelector("#person-name");
+const errorPersonName = document.querySelector("#error-person-name");
 const personCancelEditButton = document.querySelector("#person-cancel-edit");
 const personList = document.querySelector("#person-list");
 
 const experienceForm = document.querySelector("#experience-form");
 const experienceIdInput = document.querySelector("#experience-id");
 const experienceTitleInput = document.querySelector("#experience-title");
+const errorExperienceTitle = document.querySelector("#error-experience-title");
 const experienceTypeInput = document.querySelector("#experience-type");
 const experienceDescriptionInput = document.querySelector("#experience-description");
+const errorExperienceDescription = document.querySelector("#error-experience-description");
 const experienceImageInput = document.querySelector("#experience-image");
 const experienceRemoveImageInput = document.querySelector("#experience-remove-image");
 const participantsOptions = document.querySelector("#participants-options");
@@ -51,6 +54,20 @@ function bindEvents() {
   filterPersonInput.addEventListener("change", renderExperienceWall);
   filterTypeInput.addEventListener("change", renderExperienceWall);
   filterTextInput.addEventListener("input", renderExperienceWall);
+
+  // Limpiar errores en tiempo real al tipear
+  [personNameInput, experienceTitleInput, experienceDescriptionInput].forEach((input) => {
+    if (input) {
+      input.addEventListener("input", () => {
+        input.classList.remove("input-error");
+        const errSpan = input.parentElement.querySelector(".field-error-msg") || input.nextElementSibling;
+        if (errSpan && errSpan.classList && errSpan.classList.contains("field-error-msg")) {
+          errSpan.textContent = "";
+          errSpan.hidden = true;
+        }
+      });
+    }
+  });
 }
 
 function loadState() {
@@ -294,13 +311,49 @@ function getFilteredExperiences() {
     .sort((a, b) => b.createdAt - a.createdAt);
 }
 
+function showFieldError(input, errorElement, message) {
+  if (input) input.classList.add("input-error");
+  if (errorElement) {
+    errorElement.textContent = message;
+    errorElement.hidden = false;
+  }
+}
+
+function clearPersonErrors() {
+  if (personNameInput) personNameInput.classList.remove("input-error");
+  if (errorPersonName) {
+    errorPersonName.textContent = "";
+    errorPersonName.hidden = true;
+  }
+}
+
+function clearExperienceErrors() {
+  [experienceTitleInput, experienceDescriptionInput].forEach((input) => {
+    if (input) input.classList.remove("input-error");
+  });
+  [errorExperienceTitle, errorExperienceDescription].forEach((el) => {
+    if (el) {
+      el.textContent = "";
+      el.hidden = true;
+    }
+  });
+}
+
 function onPersonSubmit(event) {
   event.preventDefault();
+  clearPersonErrors();
 
   const name = personNameInput.value.trim();
   const id = personIdInput.value;
 
   if (!name) {
+    showFieldError(personNameInput, errorPersonName, "El nombre de la persona es obligatorio.");
+    personNameInput.focus();
+    return;
+  }
+
+  if (name.length < 2) {
+    showFieldError(personNameInput, errorPersonName, "El nombre debe tener al menos 2 caracteres.");
     personNameInput.focus();
     return;
   }
@@ -347,6 +400,7 @@ function editPerson(id) {
     return;
   }
 
+  clearPersonErrors();
   personIdInput.value = person.id;
   personNameInput.value = person.name;
   personNameInput.focus();
@@ -364,12 +418,17 @@ function deletePerson(id) {
 }
 
 function resetPersonForm() {
+  clearPersonErrors();
   personIdInput.value = "";
   personForm.reset();
 }
 
 async function onExperienceSubmit(event) {
   event.preventDefault();
+  clearExperienceErrors();
+
+  let hasErrors = false;
+  let firstInvalidInput = null;
 
   const id = experienceIdInput.value;
   const title = experienceTitleInput.value.trim();
@@ -379,13 +438,34 @@ async function onExperienceSubmit(event) {
   const removeImage = experienceRemoveImageInput.checked;
   const imageFile = experienceImageInput.files && experienceImageInput.files[0];
 
-  if (!title || !description) {
-    if (!title) {
-      experienceTitleInput.focus();
-      return;
-    }
+  // 1. Validación de Título (requerido y longitud mínima/máxima)
+  if (!title) {
+    showFieldError(experienceTitleInput, errorExperienceTitle, "El título es obligatorio.");
+    hasErrors = true;
+    if (!firstInvalidInput) firstInvalidInput = experienceTitleInput;
+  } else if (title.length < 3) {
+    showFieldError(experienceTitleInput, errorExperienceTitle, "El título debe tener al menos 3 caracteres.");
+    hasErrors = true;
+    if (!firstInvalidInput) firstInvalidInput = experienceTitleInput;
+  } else if (title.length > 80) {
+    showFieldError(experienceTitleInput, errorExperienceTitle, "El título no puede superar los 80 caracteres.");
+    hasErrors = true;
+    if (!firstInvalidInput) firstInvalidInput = experienceTitleInput;
+  }
 
-    experienceDescriptionInput.focus();
+  // 2. Validación de Descripción (requerida y longitud mínima 10 caracteres)
+  if (!description) {
+    showFieldError(experienceDescriptionInput, errorExperienceDescription, "La descripción es obligatoria.");
+    hasErrors = true;
+    if (!firstInvalidInput) firstInvalidInput = experienceDescriptionInput;
+  } else if (description.length < 10) {
+    showFieldError(experienceDescriptionInput, errorExperienceDescription, `Describe un poco más (mínimo 10 caracteres, llevas ${description.length}).`);
+    hasErrors = true;
+    if (!firstInvalidInput) firstInvalidInput = experienceDescriptionInput;
+  }
+
+  if (hasErrors) {
+    if (firstInvalidInput) firstInvalidInput.focus();
     return;
   }
 
@@ -431,6 +511,7 @@ function getSelectedParticipantIds() {
 }
 
 function resetExperienceForm() {
+  clearExperienceErrors();
   experienceIdInput.value = "";
   experienceForm.reset();
   renderPersonOptions();

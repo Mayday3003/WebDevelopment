@@ -46,11 +46,12 @@
       <div class="experience-admin-grid">
         <section class="experience-panel">
           <h3>Personas</h3>
-          <form id="person-form" class="inline-form">
+          <form id="person-form" class="inline-form" novalidate>
             <input type="hidden" id="person-id">
 
-            <label for="person-name">Nombre</label>
-            <input type="text" id="person-name" placeholder="Ej: Mariana" required>
+            <label for="person-name">Nombre *</label>
+            <input type="text" id="person-name" placeholder="Ej: Mariana">
+            <span id="error-person-name" class="field-error-msg" hidden></span>
 
             <div class="form-actions">
               <button type="submit">Guardar persona</button>
@@ -63,21 +64,23 @@
 
         <section class="experience-panel">
           <h3>Experiencias</h3>
-          <form id="experience-form" class="inline-form">
+          <form id="experience-form" class="inline-form" novalidate>
             <input type="hidden" id="experience-id">
 
-            <label for="experience-title">Título</label>
-            <input type="text" id="experience-title" placeholder="Ej: Salida al observatorio" required>
+            <label for="experience-title">Título *</label>
+            <input type="text" id="experience-title" placeholder="Ej: Salida al observatorio">
+            <span id="error-experience-title" class="field-error-msg" hidden></span>
 
             <label for="experience-type">Tipo</label>
-            <select id="experience-type" required>
+            <select id="experience-type">
               <option value="viaje">Viaje</option>
               <option value="situacion">Situación</option>
               <option value="experiencia">Experiencia</option>
             </select>
 
-            <label for="experience-description">Descripción</label>
-            <textarea id="experience-description" rows="4" placeholder="Describe este momento..." required></textarea>
+            <label for="experience-description">Descripción *</label>
+            <textarea id="experience-description" rows="4" placeholder="Describe este momento..."></textarea>
+            <span id="error-experience-description" class="field-error-msg" hidden></span>
 
             <label for="experience-image">Imagen (opcional)</label>
             <input type="file" id="experience-image" accept="image/*">

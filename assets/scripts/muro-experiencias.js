@@ -35,9 +35,13 @@ const pinPreviewWrapper = document.querySelector("#pin-preview-wrapper");
 const createImagePreview = document.querySelector("#create-image-preview");
 const btnRemovePreview = document.querySelector("#btn-remove-preview");
 const createTitleInput = document.querySelector("#create-title");
+const createAuthorEmailInput = document.querySelector("#create-author-email");
 const createTypeInput = document.querySelector("#create-type");
 const createDescriptionInput = document.querySelector("#create-description");
 const createParticipantsList = document.querySelector("#create-participants-list");
+const errorCreateTitle = document.querySelector("#error-create-title");
+const errorCreateEmail = document.querySelector("#error-create-email");
+const errorCreateDescription = document.querySelector("#error-create-description");
 const btnQuickAddPerson = document.querySelector("#btn-quick-add-person");
 const quickAddPersonContainer = document.querySelector("#quick-add-person-container");
 const quickPersonNameInput = document.querySelector("#quick-person-name");
@@ -140,6 +144,20 @@ function bindEvents() {
 
   // Enviar formulario de creación
   createExperienceForm.addEventListener("submit", onCreateExperienceSubmit);
+
+  // Limpiar errores en tiempo real al escribir
+  [createTitleInput, createAuthorEmailInput, createDescriptionInput].forEach((input) => {
+    if (input) {
+      input.addEventListener("input", () => {
+        input.classList.remove("input-error");
+        const errSpan = input.parentElement.querySelector(".field-error-msg");
+        if (errSpan) {
+          errSpan.textContent = "";
+          errSpan.hidden = true;
+        }
+      });
+    }
+  });
 
   // Guardar desde el modal de detalle
   modalSaveBtn.addEventListener("click", () => {
@@ -516,6 +534,7 @@ function closeCreateModal() {
   createModal.hidden = true;
   document.body.style.overflow = "";
   createExperienceForm.reset();
+  clearCreateFormErrors();
   resetImagePreview();
   quickAddPersonContainer.hidden = true;
 }
@@ -625,15 +644,82 @@ function handleQuickAddPerson() {
   quickAddPersonContainer.hidden = true;
 }
 
+function clearCreateFormErrors() {
+  const errorElements = [errorCreateTitle, errorCreateEmail, errorCreateDescription];
+  errorElements.forEach((el) => {
+    if (el) {
+      el.textContent = "";
+      el.hidden = true;
+    }
+  });
+
+  const inputs = [createTitleInput, createAuthorEmailInput, createDescriptionInput];
+  inputs.forEach((input) => {
+    if (input) input.classList.remove("input-error");
+  });
+}
+
+function showFieldError(input, errorElement, message) {
+  if (input) input.classList.add("input-error");
+  if (errorElement) {
+    errorElement.textContent = message;
+    errorElement.hidden = false;
+  }
+}
+
 function onCreateExperienceSubmit(event) {
   event.preventDefault();
+  clearCreateFormErrors();
+
+  let hasErrors = false;
+  let firstInvalidInput = null;
 
   const title = createTitleInput.value.trim();
+  const email = createAuthorEmailInput ? createAuthorEmailInput.value.trim() : "";
   const type = createTypeInput.value;
   const description = createDescriptionInput.value.trim();
 
-  if (!title || !description) {
-    alert("Por favor completa el título y la descripción.");
+  // 1. Validación de campo requerido y longitud de Título (mínimo 3 caracteres, máximo 80)
+  if (!title) {
+    showFieldError(createTitleInput, errorCreateTitle, "El título es obligatorio.");
+    hasErrors = true;
+    if (!firstInvalidInput) firstInvalidInput = createTitleInput;
+  } else if (title.length < 3) {
+    showFieldError(createTitleInput, errorCreateTitle, "El título debe tener al menos 3 caracteres.");
+    hasErrors = true;
+    if (!firstInvalidInput) firstInvalidInput = createTitleInput;
+  } else if (title.length > 80) {
+    showFieldError(createTitleInput, errorCreateTitle, "El título no puede superar los 80 caracteres.");
+    hasErrors = true;
+    if (!firstInvalidInput) firstInvalidInput = createTitleInput;
+  }
+
+  // 2. Validación de Correo electrónico (requerido y formato con expresión regular)
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email) {
+    showFieldError(createAuthorEmailInput, errorCreateEmail, "El correo de contacto es obligatorio.");
+    hasErrors = true;
+    if (!firstInvalidInput) firstInvalidInput = createAuthorEmailInput;
+  } else if (!emailPattern.test(email)) {
+    showFieldError(createAuthorEmailInput, errorCreateEmail, "Ingresa un correo electrónico válido (ej: nombre@dominio.com).");
+    hasErrors = true;
+    if (!firstInvalidInput) firstInvalidInput = createAuthorEmailInput;
+  }
+
+  // 3. Validación de Descripción (requerido y longitud mínima 10 caracteres)
+  if (!description) {
+    showFieldError(createDescriptionInput, errorCreateDescription, "La descripción es obligatoria.");
+    hasErrors = true;
+    if (!firstInvalidInput) firstInvalidInput = createDescriptionInput;
+  } else if (description.length < 10) {
+    showFieldError(createDescriptionInput, errorCreateDescription, `Cuéntanos un poco más (mínimo 10 caracteres, llevas ${description.length}).`);
+    hasErrors = true;
+    if (!firstInvalidInput) firstInvalidInput = createDescriptionInput;
+  }
+
+  // Si hay errores, no se envía y se hace foco en el primer campo erróneo
+  if (hasErrors) {
+    if (firstInvalidInput) firstInvalidInput.focus();
     return;
   }
 
@@ -644,6 +730,7 @@ function onCreateExperienceSubmit(event) {
   const newExperience = {
     id: `experience-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     title,
+    email,
     type,
     description,
     personIds: selectedPersonIds,

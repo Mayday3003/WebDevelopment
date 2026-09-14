@@ -1758,6 +1758,7 @@ main{
   display: flex;
   flex-direction: column;
   gap: 6px;
+  position: relative;
 }
 
 .pin-field-group label{
@@ -1767,6 +1768,32 @@ main{
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--acero);
+}
+
+.field-error-msg{
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: #d19a66; /* Tono ámbar/dorado cálido estético, sin usar rojo estridente */
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+  transition: opacity 0.2s ease;
+}
+
+[data-theme="light"] .field-error-msg{
+  color: #9c5c16;
+}
+
+.input-error{
+  border-color: #d19a66 !important;
+  box-shadow: 0 0 0 2px rgba(209, 154, 102, 0.25) !important;
+}
+
+[data-theme="light"] .input-error{
+  border-color: #9c5c16 !important;
+  box-shadow: 0 0 0 2px rgba(156, 92, 22, 0.2) !important;
 }
 
 .pin-label-row{

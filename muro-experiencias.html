@@ -145,7 +145,7 @@
           </svg>
         </button>
 
-        <form id="create-experience-form" class="pin-modal-content pin-create-form">
+        <form id="create-experience-form" class="pin-modal-content pin-create-form" novalidate>
           <!-- Columna izquierda: Subida y vista previa de imagen -->
           <div class="pin-modal-media pin-create-media">
             <div class="pin-upload-box" id="pin-dropzone">
@@ -176,8 +176,15 @@
             </div>
 
             <div class="pin-field-group">
-              <label for="create-title">Título</label>
-              <input type="text" id="create-title" class="pin-input-text" placeholder="Ej: Atardecer en Guatapé..." required>
+              <label for="create-title">Título *</label>
+              <input type="text" id="create-title" class="pin-input-text" placeholder="Ej: Atardecer en Guatapé...">
+              <span id="error-create-title" class="field-error-msg" hidden></span>
+            </div>
+
+            <div class="pin-field-group">
+              <label for="create-author-email">Correo de contacto *</label>
+              <input type="email" id="create-author-email" class="pin-input-text" placeholder="tu-correo@ejemplo.com">
+              <span id="error-create-email" class="field-error-msg" hidden></span>
             </div>
 
             <div class="pin-field-group">
@@ -190,8 +197,9 @@
             </div>
 
             <div class="pin-field-group">
-              <label for="create-description">Descripción</label>
-              <textarea id="create-description" class="pin-input-textarea" rows="4" placeholder="¿Qué ocurrió? Cuenta la anécdota o sentimiento..." required></textarea>
+              <label for="create-description">Descripción *</label>
+              <textarea id="create-description" class="pin-input-textarea" rows="3" placeholder="¿Qué ocurrió? Cuenta la anécdota o sentimiento..."></textarea>
+              <span id="error-create-description" class="field-error-msg" hidden></span>
             </div>
 
             <div class="pin-field-group">
