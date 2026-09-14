@@ -10,31 +10,33 @@
 
   <header class="site-header">
     <div class="logo">
-      <span class="mark">M.L</span>
-      <span class="sub">Mayday</span>
+      <a href="index.html" class="logo-link">
+        <span class="mark">Mayday 🗲</span>
+        <span class="sub">🗲</span>
+      </a>
     </div>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html" aria-current="page">Inicio</a></li>
         <li><a href="proyectos.html">Proyectos</a></li>
-        <li><a href="experiencias.html">Experiencias</a></li>
-        <li><a href="intereses.html">Cositas chéveres</a></li>
+        <li><a href="muro-experiencias.html">Muro de experiencias</a></li>
       </ul>
     </nav>
+    <div class="header-action">
+      <a href="muro-experiencias.html?action=new" class="nav-btn-create">+ Crear</a>
+    </div>
   </header>
 
   <main>
 
     <section class="hero">
       <div class="hero-text">
-        <h1>Un mapa de las cosas <em>que me sostienen❀</em></h1>
-        <p>Un lugar para retratar todo lo que amo</p>
-          <p>(Con los que amo)</p>
+        <h1>Lo que amo <em> (con los que amo)</em></h1>
+        <p>Un espacio en donde documentar mis intereses, proyectos de investigación y memorias con personas importantes.</p>
 
         <div class="hero-actions">
           <a href="proyectos.html" class="btn primary">Proyectos</a>
-          <a href="experiencias.html" class="btn ghost">Experiencias</a>
-          <a href="intereses.html" class="btn ghost">Cositas chéveres</a>
+          <a href="muro-experiencias.html" class="btn ghost">Experiencias</a>
         </div>
       </div>
 
@@ -50,8 +52,8 @@
 
     <section class="section" id="intereses">
       <div class="section-head">
-        <h2>☆ Lo que de verdad me mueve ☆</h2>
-        <span class="num">☆</span>
+        <h2>Lo que de verdad me mueve</h2>
+        <span class="num">01</span>
       </div>
 
       <div class="interest-grid">
@@ -78,7 +80,7 @@
     <section class="section" id="preview">
       <div class="section-head">
         <h2>Últimas Fotos</h2>
-        <span class="num"><a href="intereses.html">Ver todo →</a></span>
+        <span class="num"><a href="muro-experiencias.html">Ver todo →</a></span>
       </div>
 
       <div class="interest-grid" style="grid-template-columns: repeat(3, 1fr);">
@@ -90,7 +92,7 @@
         </div>
         <div class="interest-card" style="padding:0;">
           <div class="img-slot" style="aspect-ratio: 1/1; border:none;">
-            <span class="label">Feria de flores ❀ - 2026</span>
+            <span class="label">Feria de flores - 2026</span>
             <img src="assets/images/feria.jpeg" alt="">
           </div>
         </div>
@@ -103,6 +105,20 @@
       </div>
     </section>
 
+    <section>
+      <div class="section-head" style="margin-bottom:20px;">
+        <h2>Canciones</h2>
+        <span class="num">Always on repeat</span>
+      </div>
+      <div class="favorites">
+        <span class="pill">Still loving you - Scorpions</span>
+        <span class="pill">Dull knifes - The warning </span>
+        <span class="pill">Nightmare - Halsey</span>
+        <span class="pill">Hey you - Pink Floyd</span>
+        <span class="pill">Ahora nada es imposible - Margarita Siempre Viva</span>
+
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -115,5 +131,6 @@
     </div>
   </footer>
 
+  <script src="assets/scripts/theme-toggle.js" defer></script>
 </body>
 </html>

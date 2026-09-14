@@ -3,131 +3,145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Galería — Bitácora Personal</title>
-<link rel="stylesheet" href="style.css">
+<title>Experiencias — MAYDAY</title>
+<link rel="stylesheet" href="assets/styles/global.css">
 </head>
 <body>
 
   <header class="site-header">
     <div class="logo">
-      <span class="mark">A.M.</span>
-      <span class="sub">Bitácora personal</span>
+      <a href="index.html" class="logo-link">
+        <span class="mark">M.L</span>
+        <span class="sub">Mayday</span>
+      </a>
     </div>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Inicio</a></li>
-        <li><a href="galeria.html" aria-current="page">Galería</a></li>
-        <li><a href="sobre-mi.html">Sobre mí</a></li>
+        <li><a href="proyectos.html">Proyectos</a></li>
+        <li><a href="muro-experiencias.html">Muro de experiencias</a></li>
       </ul>
     </nav>
+    <div class="header-action">
+      <a href="muro-experiencias.html?action=new" class="nav-btn-create">+ Crear</a>
+    </div>
   </header>
 
   <main>
-
-    <section class="gallery-intro">
-      <div>
-        <p class="eyebrow">Archivo visual</p>
-        <h1>Todo lo que guardo<Facultad/h1>
+    <section class="section experiencias-section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Registro</p>
+          <h1 class="experiencias-title">Experiencias compartidas</h1>
+        </div>
+        <span class="num">
+          <a href="muro-experiencias.html">Ver muro visual →</a>
+        </span>
       </div>
-      <p>Un mosaico sin orden estricto: capturas de películas, fotografías de mar, diagramas y fragmentos que no dejo de re-guardar. Reemplaza cada espacio marcado por tus propias imágenes.</p>
+
+      <p class="experiencias-intro">
+        Crea personas, asígnalas a múltiples recuerdos y permite comentarios en cada tarjeta.
+      </p>
+
+      <div class="experience-admin-grid">
+        <section class="experience-panel">
+          <h3>Personas</h3>
+          <form id="person-form" class="inline-form">
+            <input type="hidden" id="person-id">
+
+            <label for="person-name">Nombre</label>
+            <input type="text" id="person-name" placeholder="Ej: Mariana" required>
+
+            <div class="form-actions">
+              <button type="submit">Guardar persona</button>
+              <button type="button" id="person-cancel-edit" class="btn-alt">Cancelar</button>
+            </div>
+          </form>
+
+          <ul id="person-list" class="entity-list"></ul>
+        </section>
+
+        <section class="experience-panel">
+          <h3>Experiencias</h3>
+          <form id="experience-form" class="inline-form">
+            <input type="hidden" id="experience-id">
+
+            <label for="experience-title">Título</label>
+            <input type="text" id="experience-title" placeholder="Ej: Salida al observatorio" required>
+
+            <label for="experience-type">Tipo</label>
+            <select id="experience-type" required>
+              <option value="viaje">Viaje</option>
+              <option value="situacion">Situación</option>
+              <option value="experiencia">Experiencia</option>
+            </select>
+
+            <label for="experience-description">Descripción</label>
+            <textarea id="experience-description" rows="4" placeholder="Describe este momento..." required></textarea>
+
+            <label for="experience-image">Imagen (opcional)</label>
+            <input type="file" id="experience-image" accept="image/*">
+            <label class="toggle-inline" for="experience-remove-image">
+              <input type="checkbox" id="experience-remove-image">
+              Quitar imagen actual al guardar
+            </label>
+            <p class="form-help">La imagen se guarda localmente en tu navegador (ideal para prototipo).</p>
+
+            <fieldset class="participants-fieldset">
+              <legend>Participantes</legend>
+              <div id="participants-options" class="participants-options"></div>
+            </fieldset>
+
+            <div class="form-actions">
+              <button type="submit">Guardar experiencia</button>
+              <button type="button" id="experience-cancel-edit" class="btn-alt">Cancelar</button>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <section class="experience-filters">
+        <h3>Filtros</h3>
+        <div class="filter-controls">
+          <div>
+            <label for="filter-person">Persona</label>
+            <select id="filter-person">
+              <option value="">Todas</option>
+            </select>
+          </div>
+          <div>
+            <label for="filter-type">Tipo</label>
+            <select id="filter-type">
+              <option value="">Todos</option>
+              <option value="viaje">Viaje</option>
+              <option value="situacion">Situación</option>
+              <option value="experiencia">Experiencia</option>
+            </select>
+          </div>
+          <div>
+            <label for="filter-text">Buscar</label>
+            <input type="search" id="filter-text" placeholder="Título o descripción">
+          </div>
+        </div>
+      </section>
+
+      <p id="experience-empty" class="empty-state" hidden>No hay resultados para este filtro.</p>
+      <div id="experience-wall" class="experience-wall"></div>
     </section>
-
-    <!-- ============ MASONRY GRID ============ -->
-    <div class="masonry">
-
-      <div class="tile h2 w2">
-        <div class="img-slot" style="border:none; height:100%;">
-          <span class="label">Espacio 01 — horizontal</span>
-          <span class="eyebrow">sugerido 1600×1000</span>
-          <img src="" alt="">
-        </div>
-        <span class="tile-caption">Ref. 01</span>
-      </div>
-
-      <div class="tile h1">
-        <div class="img-slot" style="border:none; height:100%;">
-          <span class="label">Espacio 02</span>
-          <img src="" alt="">
-        </div>
-        <span class="tile-caption">Ref. 02</span>
-      </div>
-
-      <div class="tile h3">
-        <div class="img-slot" style="border:none; height:100%;">
-          <span class="label">Espacio 03 — vertical</span>
-          <span class="eyebrow">sugerido 900×1400</span>
-          <img src="" alt="">
-        </div>
-        <span class="tile-caption">Ref. 03</span>
-      </div>
-
-      <div class="tile h2">
-        <div class="img-slot" style="border:none; height:100%;">
-          <span class="label">Espacio 04</span>
-          <img src="" alt="">
-        </div>
-        <span class="tile-caption">Ref. 04</span>
-      </div>
-
-      <div class="tile h1 w2">
-        <div class="img-slot" style="border:none; height:100%;">
-          <span class="label">Espacio 05 — horizontal</span>
-          <img src="" alt="">
-        </div>
-        <span class="tile-caption">Ref. 05</span>
-      </div>
-
-      <div class="tile h2">
-        <div class="img-slot" style="border:none; height:100%;">
-          <span class="label">Espacio 06</span>
-          <img src="" alt="">
-        </div>
-        <span class="tile-caption">Ref. 06</span>
-      </div>
-
-      <div class="tile h3">
-        <div class="img-slot" style="border:none; height:100%;">
-          <span class="label">Espacio 07 — vertical</span>
-          <img src="" alt="">
-        </div>
-        <span class="tile-caption">Ref. 07</span>
-      </div>
-
-      <div class="tile h1">
-        <div class="img-slot" style="border:none; height:100%;">
-          <span class="label">Espacio 08</span>
-          <img src="" alt="">
-        </div>
-        <span class="tile-caption">Ref. 08</span>
-      </div>
-
-      <div class="tile h2 w2">
-        <div class="img-slot" style="border:none; height:100%;">
-          <span class="label">Espacio 09 — horizontal</span>
-          <img src="" alt="">
-        </div>
-        <span class="tile-caption">Ref. 09</span>
-      </div>
-
-    </div>
-
-    <p style="text-align:center; color: var(--acero); font-family: var(--font-display); font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; padding-bottom: 60px;">
-      — fin del archivo, por ahora —
-    </p>
-
   </main>
 
   <footer class="site-footer">
     <div class="coords">
-      <span>ARCHIVO PERSONAL — EST. 2026</span>
-      <span>9 REFERENCIAS GUARDADAS</span>
+      <span></span>
     </div>
     <div class="socials">
-      <a href="#">Pinterest</a>
-      <a href="#">Instagram</a>
-      <a href="#">Letterboxd</a>
+      <a href="https://pin.it/6FbzztlTF" target="_blank" rel="noopener noreferrer">Pinterest</a>
+      <a href="https://www.instagram.com/mayday_lopera.tif?stkn=MXNlMXptdWdvemRiaA==" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://boxd.it/fcKcH" target="_blank" rel="noopener noreferrer">Letterboxd</a>
     </div>
   </footer>
 
+  <script src="assets/scripts/theme-toggle.js" defer></script>
+  <script src="assets/scripts/experiencias.js" defer></script>
 </body>
 </html>

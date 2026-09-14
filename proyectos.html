@@ -5,46 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Proyectos — MAYDAY</title>
 <link rel="stylesheet" href="assets/styles/global.css">
-<link rel="stylesheet" href="assets/styles/proyectos.css">
 </head>
 <body>
 
   <header class="site-header">
     <div class="logo">
-      <span class="mark">M.L</span>
-      <span class="sub">Mayday</span>
+      <a href="index.html" class="logo-link">
+        <span class="mark">Mayday 🗲</span>
+        <span class="sub">🗲</span>
+      </a>
+    </div>
     </div>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="proyectos.html" aria-current="page">Proyectos</a></li>
-        <li><a href="experiencias.html">Experiencias</a></li>
-        <li><a href="intereses.html">Cositas chéveres</a></li>
+        <li><a href="muro-experiencias.html">Muro de experiencias</a></li>
       </ul>
     </nav>
+    <div class="header-action">
+      <a href="muro-experiencias.html?action=new" class="nav-btn-create">+ Crear</a>
+    </div>
   </header>
 
   <main>
 
-    <!-- ============ INTRO (flexbox) ============ -->
     <section class="about-hero">
       <div class="about-portrait">
         <div class="img-slot">
-          <span class="label">Retrato</span>
-          <span class="eyebrow">sugerido 800×1000</span>
-          <img src="assets/images/yo/IMG_0022 (1).JPG" alt="Retrato personal">
+          <img src="assets/images/yo/IMG_0022 (1).JPG" alt="Foto de Mari con un sombrero y gafas de sol">
         </div>
       </div>
 
       <div class="about-intro">
-        <p class="eyebrow">Ficha personal</p>
-        <h1>Hola, soy [tu nombre]</h1>
-        <p>Escribe aquí una presentación breve: quién eres, a qué te dedicas y qué te trae a construir este pequeño archivo. Puede ser tan técnico o tan poético como quieras — este es tu espacio.</p>
-        <p class="serif-italic">"Reemplaza este párrafo por una frase o cita que te represente."</p>
+        <h1>MAYDAY</h1>
+        <p>Ojalá algún dia ser (Astro)Física  </p>
+        <p class="serif-italic">"To do things that are as complicated and challenging as spaceflight, you have to have all disciplines represented to get the job done. — Christina Koch"</p>
       </div>
     </section>
 
-    <!-- ============ DATOS RÁPIDOS (flexbox) ============ -->
+
     <div class="facts-strip">
       <div class="fact">
         <span class="eyebrow">Base</span>
@@ -64,62 +64,47 @@
       </div>
     </div>
 
+
     <!-- ============ TIMELINE (flexbox column) ============ -->
     <section>
       <div class="section-head" style="margin-bottom:20px;">
-        <h2>Bitácora</h2>
-        <span class="num">Hitos personales</span>
+        <h2>Proyectos</h2>
+        <span class="num">Algunos bien, otros a medias</span>
       </div>
 
       <div class="timeline">
         <div class="timeline-row">
-          <span class="year">2023</span>
+          <span class="year">2025-Hoy</span>
           <div class="content">
-            <h3>Un comienzo cualquiera</h3>
-            <p>Describe aquí un momento o proyecto que marcó este año. Puedes editar o añadir tantas filas como quieras.</p>
+            <h3>Observatorio Ultravioleta Lunar</h3>
+            <p>Misión espacial para hacer la primera reconstrucción 3D de la exósfera terrestre y su interacción con la magnetosfera y el viento solar.</p>
           </div>
         </div>
         <div class="timeline-row">
-          <span class="year">2024</span>
+          <span class="year">2026</span>
           <div class="content">
-            <h3>Un punto de inflexión</h3>
-            <p>Otro hito, otro recuerdo. Este formato de línea de tiempo funciona bien para procesos reales con orden cronológico.</p>
+            <h3>Orquideas</h3>
+            <p>App móvil para caficultores y estudiantes sobre la realización de Biochar para eliminar contaminantes emergentes del agua .</p>
           </div>
         </div>
         <div class="timeline-row">
-          <span class="year">2025 — hoy</span>
+          <span class="year">2027</span>
           <div class="content">
-            <h3>Este archivo</h3>
-            <p>El presente: construir este pequeño rincón personal como forma de coleccionar lo que te gusta.</p>
+            <h3>Inestabilidades paramétricas</h3>
+            <p>Hipótesis sobre la presencia de inestabilidades paramétricas por ondas de Álfven en la exósfera terrestre.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ FAVORITOS (flexbox wrap) ============ -->
-    <section>
-      <div class="section-head" style="margin-bottom:20px;">
-        <h2>Constantes</h2>
-        <span class="num">Gustos de siempre</span>
-      </div>
-      <div class="favorites">
-        <span class="pill">Interstellar</span>
-        <span class="pill">Tonos azules</span>
-        <span class="pill">Fotografía de mar</span>
-        <span class="pill">Tipografía técnica</span>
-        <span class="pill">Vinilo</span>
-        <span class="pill">Café negro</span>
-        <span class="pill">Cielo nocturno</span>
-        <span class="pill">[añade el tuyo]</span>
-      </div>
-    </section>
+
+
 
   </main>
 
   <footer class="site-footer">
     <div class="coords">
-      <span>ARCHIVO PERSONAL — EST. 2026</span>
-      <span>ACTUALIZADO CONTINUAMENTE</span>
+      <span></span>
     </div>
     <div class="socials">
       <a href="#">Pinterest</a>
@@ -128,5 +113,6 @@
     </div>
   </footer>
 
+  <script src="assets/scripts/theme-toggle.js" defer></script>
 </body>
 </html>

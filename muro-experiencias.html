@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muro de experiencias — MAYDAY</title>
+<link rel="stylesheet" href="assets/styles/global.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html" class="logo-link">
+        <span class="mark">Mayday 🗲</span>
+        <span class="sub">🗲</span>
+      </a>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="proyectos.html">Proyectos</a></li>
+        <li><a href="muro-experiencias.html" aria-current="page">Muro de experiencias</a></li>
+      </ul>
+    </nav>
+    <div class="header-action">
+      <button type="button" id="header-create-btn" class="nav-btn-create">+ Crear</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h1 class="experiencias-title">❀Recuerditos❀</h1>
+        </div>
+        <div class="section-actions">
+          <button type="button" id="wall-create-btn" class="btn-primary-action">+ Añadir recuerdo</button>
+          <a href="experiencias.html" class="btn-secondary-link" title="Administrar personas y datos">Gestionar datos</a>
+        </div>
+      </div>
+
+
+      <section class="experience-filters">
+        <h3>Filtros</h3>
+        <div class="filter-controls">
+          <div>
+            <label for="wall-filter-person">Persona</label>
+            <select id="wall-filter-person">
+              <option value="">Todas</option>
+            </select>
+          </div>
+          <div>
+            <label for="wall-filter-type">Tipo</label>
+            <select id="wall-filter-type">
+              <option value="">Todos</option>
+              <option value="viaje">Viaje</option>
+              <option value="situacion">Situación</option>
+              <option value="experiencia">Experiencia</option>
+            </select>
+          </div>
+          <div>
+            <label for="wall-filter-text">Buscar</label>
+            <input type="search" id="wall-filter-text" placeholder="Título o descripción">
+          </div>
+        </div>
+      </section>
+
+      <p id="wall-empty" class="empty-state" hidden>No hay resultados para este filtro.</p>
+      <div id="visual-wall" class="visual-wall"></div>
+    </section>
+
+    <!-- Modal Detalle Pinterest -->
+    <div id="experience-modal" class="pin-modal-backdrop" hidden>
+      <div class="pin-modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-experience-title">
+        <button type="button" class="pin-modal-close" id="modal-close-btn" aria-label="Cerrar modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <div class="pin-modal-content">
+          <!-- Columna izquierda: Imagen -->
+          <div class="pin-modal-media">
+            <div id="modal-image-wrapper" class="pin-modal-image-wrapper"></div>
+          </div>
+
+          <!-- Columna derecha: Detalles y comentarios -->
+          <div class="pin-modal-info">
+            <div class="pin-modal-header">
+              <div class="pin-modal-header-top">
+                <span id="modal-experience-type" class="pin-type-pill">Experiencia</span>
+                <button type="button" id="modal-save-btn" class="pin-btn-save">
+                  Guardar
+                </button>
+              </div>
+              <h2 id="modal-experience-title" class="pin-modal-title"></h2>
+              <time id="modal-experience-date" class="pin-modal-date"></time>
+            </div>
+
+            <!-- Participantes -->
+            <div class="pin-modal-section">
+              <span class="pin-section-label">Estuvieron</span>
+              <div id="modal-participants-list" class="pin-participants-chips"></div>
+            </div>
+
+            <!-- Descripción -->
+            <div class="pin-modal-section">
+              <span class="pin-section-label">Descripción</span>
+              <p id="modal-experience-desc" class="pin-modal-description"></p>
+            </div>
+
+            <hr class="pin-divider">
+
+            <!-- Comentarios -->
+            <div class="pin-modal-section pin-comments-section">
+              <span class="pin-section-label">Comentarios (<span id="modal-comment-count">0</span>)</span>
+              <div id="modal-comments-list" class="pin-comments-list"></div>
+
+              <form id="modal-comment-form" class="pin-comment-input-form">
+                <input type="text" id="modal-comment-author" placeholder="Tu nombre..." required>
+                <div class="pin-comment-input-row">
+                  <input type="text" id="modal-comment-text" placeholder="Añade un comentario..." required>
+                  <button type="submit" class="pin-comment-submit" aria-label="Enviar comentario">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="22" y1="2" x2="11" y2="13"></line>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para CREAR Experiencia -->
+    <div id="create-modal" class="pin-modal-backdrop" hidden>
+      <div class="pin-modal-container pin-create-container" role="dialog" aria-modal="true" aria-labelledby="create-modal-title">
+        <button type="button" class="pin-modal-close" id="create-modal-close-btn" aria-label="Cerrar ventana">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <form id="create-experience-form" class="pin-modal-content pin-create-form">
+          <!-- Columna izquierda: Subida y vista previa de imagen -->
+          <div class="pin-modal-media pin-create-media">
+            <div class="pin-upload-box" id="pin-dropzone">
+              <input type="file" id="create-image-input" accept="image/*" class="pin-file-input">
+              <div id="pin-upload-placeholder" class="pin-upload-placeholder">
+                <div class="pin-upload-icon">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                </div>
+                <p class="pin-upload-title">Elige una foto o arrástrala aquí</p>
+                <span class="pin-upload-hint">Se recomienda archivo JPG o PNG de alta calidad</span>
+              </div>
+              <div id="pin-preview-wrapper" class="pin-preview-wrapper" hidden>
+                <img id="create-image-preview" src="" alt="Vista previa">
+                <button type="button" id="btn-remove-preview" class="pin-remove-preview-btn">Cambiar foto</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna derecha: Campos de datos -->
+          <div class="pin-modal-info pin-create-fields">
+            <div class="pin-modal-header-top">
+              <h2 id="create-modal-title" class="pin-create-heading">Crear nuevo recuerdo</h2>
+              <button type="submit" class="pin-btn-save pin-btn-publish">Publicar</button>
+            </div>
+
+            <div class="pin-field-group">
+              <label for="create-title">Título</label>
+              <input type="text" id="create-title" class="pin-input-text" placeholder="Ej: Atardecer en Guatapé..." required>
+            </div>
+
+            <div class="pin-field-group">
+              <label for="create-type">Tipo de recuerdo</label>
+              <select id="create-type" class="pin-input-select">
+                <option value="experiencia">Experiencia</option>
+                <option value="viaje">Viaje</option>
+                <option value="situacion">Situación</option>
+              </select>
+            </div>
+
+            <div class="pin-field-group">
+              <label for="create-description">Descripción</label>
+              <textarea id="create-description" class="pin-input-textarea" rows="4" placeholder="¿Qué ocurrió? Cuenta la anécdota o sentimiento..." required></textarea>
+            </div>
+
+            <div class="pin-field-group">
+              <div class="pin-label-row">
+                <label>Personas presentes</label>
+                <button type="button" id="btn-quick-add-person" class="pin-btn-text">+ Nueva persona</button>
+              </div>
+              <div id="quick-add-person-container" class="pin-quick-person-input" hidden>
+                <input type="text" id="quick-person-name" placeholder="Nombre de la persona...">
+                <button type="button" id="btn-confirm-add-person" class="pin-btn-small">Agregar</button>
+              </div>
+              <div id="create-participants-list" class="pin-participants-selector"></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="coords">
+      <span></span>
+    </div>
+    <div class="socials">
+      <a href="https://pin.it/6FbzztlTF" target="_blank" rel="noopener noreferrer">Pinterest</a>
+      <a href="https://www.instagram.com/mayday_lopera.tif?stkn=MXNlMXptdWdvemRiaA==" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://boxd.it/fcKcH" target="_blank" rel="noopener noreferrer">Letterboxd</a>
+    </div>
+  </footer>
+
+  <script src="assets/scripts/theme-toggle.js" defer></script>
+  <script src="assets/scripts/muro-experiencias.js" defer></script>
+</body>
+</html>
