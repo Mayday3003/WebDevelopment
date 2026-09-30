@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Tema Oscuro por defecto: Azules profundos, cósmicos y armoniosos de Mayday */
+  --negro: #09131d;
+  --azul-prof: #0d1d2d;
+  --azul-medio: #162f48;
+  --azul-acento: #4a8cb8;
+  --azul-hover: #35729c;
+  --azul-glow: rgba(74, 140, 184, 0.35);
+  --acero: #7a9fb8;
+  --beige: #b9cbdb;
+  --crema: #dce8f2;
+  --crema-suave: #f0f6fb;
+  --linea: rgba(122, 159, 184, 0.16);
+  --linea-fuerte: rgba(122, 159, 184, 0.28);
+
+  --font-titulos: 'Newsreader', Georgia, serif;
+  --font-ui: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+[data-theme="light"] {
+  --negro: #f4efe6;
+  --azul-prof: #eae3d5;
+  --azul-medio: #ded4c3;
+  --azul-acento: #2d6088;
+  --azul-hover: #224b6c;
+  --azul-glow: rgba(45, 96, 136, 0.25);
+  --acero: #5a768c;
+  --beige: #334756;
+  --crema: #1d2d3d;
+  --crema-suave: #0f1d2b;
+  --linea: rgba(90, 118, 140, 0.2);
+  --linea-fuerte: rgba(90, 118, 140, 0.38);
+}
+
+body {
+  background-color: var(--negro);
+  color: var(--crema);
+  font-family: var(--font-ui);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-titulos);
+}
+
+.font-serif-italic {
+  font-family: var(--font-titulos);
+  font-style: italic;
+}
+
+.font-code {
+  font-family: var(--font-mono);
+}
+
+/* Efectos de Masonry Columns para el Muro de Recuerdos */
+.masonry-wall {
+  column-count: 4;
+  column-gap: 1.25rem;
+}
+
+@media (max-width: 1200px) {
+  .masonry-wall {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 860px) {
+  .masonry-wall {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .masonry-wall {
+    column-count: 1;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.25rem;
+}
